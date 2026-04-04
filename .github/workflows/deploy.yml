@@ -3,6 +3,13 @@ name: Deploy
 on:
   push:
     branches: ["master"]
+    paths:
+      - "src/**"
+      - "public/**"
+      - "astro.config.*"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "tsconfig.json"
   workflow_dispatch:
 
 permissions:
