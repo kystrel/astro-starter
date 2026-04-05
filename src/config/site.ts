@@ -26,18 +26,12 @@ interface BusinessInfo {
   coordinates?: BusinessCoordinates
 }
 
-interface ThemeConfig {
-  light: string
-  dark: string
-}
-
 interface SiteConfig {
   siteUrl: string
   name: string
   tagline: string
   description: string
   ogImage: string
-  locale: string
   logo: string
   colors: {
     primary: string
@@ -47,9 +41,8 @@ interface SiteConfig {
   footerGroups: NavGroup[]
   social: SocialLink[]
   copyright: string
-  business: BusinessInfo
-  theme: ThemeConfig
-  formAction: string
+  business?: BusinessInfo
+  formAction?: string
 }
 
 export const siteConfig: SiteConfig = {
@@ -58,8 +51,7 @@ export const siteConfig: SiteConfig = {
   tagline: 'A minimal template to start building\nfast, modern websites.',
   description:
     'A minimal Astro starter template for building fast, modern websites with Tailwind CSS and DaisyUI.',
-  ogImage: '/og-image.png',
-  locale: 'en',
+  ogImage: `${import.meta.env.BASE_URL}og-image.png`,
   logo: '/favicon.svg',
   colors: {
     primary: 'primary',
@@ -104,9 +96,4 @@ export const siteConfig: SiteConfig = {
       lng: -74.006,
     },
   },
-  theme: {
-    light: 'corporate',
-    dark: 'business',
-  },
-  formAction: '',
 }
