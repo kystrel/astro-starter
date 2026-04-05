@@ -14,6 +14,7 @@ interface SocialLink {
 }
 
 interface SiteConfig {
+  siteUrl: string
   name: string
   tagline: string
   description: string
@@ -29,6 +30,7 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
+  siteUrl: 'https://kystrel.github.io',
   name: 'Astro Starter',
   tagline: 'A minimal template to start building\nfast, modern websites.',
   description:
