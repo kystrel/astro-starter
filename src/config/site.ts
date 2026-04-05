@@ -13,11 +13,31 @@ interface SocialLink {
   href: string
 }
 
+interface BusinessCoordinates {
+  lat: number
+  lng: number
+}
+
+interface BusinessInfo {
+  phone: string
+  email: string
+  address: string
+  hours: string
+  coordinates?: BusinessCoordinates
+}
+
+interface ThemeConfig {
+  light: string
+  dark: string
+}
+
 interface SiteConfig {
   siteUrl: string
   name: string
   tagline: string
   description: string
+  ogImage: string
+  locale: string
   logo: string
   colors: {
     primary: string
@@ -27,6 +47,9 @@ interface SiteConfig {
   footerGroups: NavGroup[]
   social: SocialLink[]
   copyright: string
+  business: BusinessInfo
+  theme: ThemeConfig
+  formAction: string
 }
 
 export const siteConfig: SiteConfig = {
@@ -35,6 +58,8 @@ export const siteConfig: SiteConfig = {
   tagline: 'A minimal template to start building\nfast, modern websites.',
   description:
     'A minimal Astro starter template for building fast, modern websites with Tailwind CSS and DaisyUI.',
+  ogImage: '/og-image.png',
+  locale: 'en',
   logo: '/favicon.svg',
   colors: {
     primary: 'primary',
@@ -69,4 +94,19 @@ export const siteConfig: SiteConfig = {
     { platform: 'Twitter', href: '#' },
   ],
   copyright: 'Your Company Name',
+  business: {
+    phone: '+1 (555) 000-0000',
+    email: 'hello@example.com',
+    address: '123 Main Street, Your City, ST 00000',
+    hours: 'Mon–Fri 8am–6pm',
+    coordinates: {
+      lat: 40.7128,
+      lng: -74.006,
+    },
+  },
+  theme: {
+    light: 'corporate',
+    dark: 'business',
+  },
+  formAction: '',
 }
