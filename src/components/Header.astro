@@ -1,11 +1,6 @@
 ---
 import { ChessKnight, Menu } from '@lucide/astro'
-
-const navLinks = [
-  { label: 'Link 1', href: '#' },
-  { label: 'Link 2', href: '#' },
-  { label: 'Link 3', href: '#' },
-]
+import { siteConfig } from '../config/site'
 ---
 
 <div class="max-lg:collapse bg-base-200 lg:mb-48 shadow-sm w-full rounded-md">
@@ -16,11 +11,11 @@ const navLinks = [
       <label for="navbar-1-toggle" class="btn btn-ghost lg:hidden">
         <Menu class="h-5 w-5" />
       </label>
-      <a href="/" class="btn btn-ghost text-xl"><ChessKnight />Astro Starter</a>
+      <a href="/" class="btn btn-ghost text-xl"><ChessKnight />{siteConfig.name}</a>
     </div>
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
-        {navLinks.map(({ label, href }) => (
+        {siteConfig.nav.map(({ label, href }) => (
           <li><a href={href}>{label}</a></li>
         ))}
       </ul>
@@ -32,7 +27,7 @@ const navLinks = [
 
   <div class="collapse-content lg:hidden z-1">
     <ul class="menu">
-      {navLinks.map(({ label, href }) => (
+      {siteConfig.nav.map(({ label, href }) => (
         <li><a href={href}>{label}</a></li>
       ))}
     </ul>
