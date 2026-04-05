@@ -1,9 +1,16 @@
 ---
+import heroImg from '../assets/hassan-pasha-nEbMedmVwgw-unsplash.jpg'
+import Hero from '../components/Hero.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout>
-  <div class="container mx-auto px-4">
-    Hello World
-  </div>
+<Layout title="Home">
+  <Hero
+    headlinePrefix="Lorem Ipsum"
+    headlineAccent="Dolor Sit Amet"
+    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim."
+    primaryCta={{ label: "View Menu", href: "#" }}
+    secondaryCta={{ label: "Our Story", href: "#" }}
+    image={{ src: heroImg, alt: "Chess board" }}
+  />
 </Layout>

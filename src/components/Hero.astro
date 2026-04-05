@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+
+interface Props {
+  headlinePrefix: string
+  headlineAccent: string
+  description: string
+  primaryCta: { label: string; href: string }
+  secondaryCta: { label: string; href: string }
+  image: { src: ImageMetadata; alt: string }
+}
+
+const {
+  headlinePrefix,
+  headlineAccent,
+  description,
+  primaryCta,
+  secondaryCta,
+  image,
+} = Astro.props
+---
+
+<section class="relative min-h-[80vh] flex items-center overflow-hidden">
+  <!-- Background image -->
+  <Image
+    src={image.src}
+    alt={image.alt}
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+
+  <!-- Gradient overlay: dark on left where text sits, fades right -->
+  <div class="absolute inset-0 bg-linear-to-r from-black/75 via-black/40 to-transparent"></div>
+
+  <div class="relative z-10 w-full container mx-auto px-4 py-16">
+    <h1 class="text-5xl lg:text-7xl font-bold leading-tight text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.6)]">
+      {headlinePrefix}<br />
+      <span class="text-primary">{headlineAccent}</span>
+    </h1>
+    <p class="text-lg text-white/80 mt-4 mb-8 max-w-lg [text-shadow:0_1px_12px_rgba(0,0,0,0.5)]">{description}</p>
+    <div class="flex gap-4 flex-wrap">
+      <a href={primaryCta.href} class="btn btn-primary rounded-full">{primaryCta.label}</a>
+      <a href={secondaryCta.href} class="btn btn-outline rounded-full text-white border-white hover:bg-white hover:text-black">{secondaryCta.label}</a>
+    </div>
+  </div>
+</section>
