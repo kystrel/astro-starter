@@ -3,6 +3,20 @@ import '../styles/global.css'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 import { siteConfig } from '../config/site'
+
+interface Props {
+  /** Page-specific title. Rendered as "<title> | Site Name". Defaults to site name. */
+  title?: string
+  /** Page-specific description for <meta name="description"> and OG/Twitter. Defaults to siteConfig.description. */
+  description?: string
+  /** Absolute URL for og:image. Falls back to undefined (tag omitted). */
+  ogImage?: string
+}
+
+const { title, description = siteConfig.description, ogImage } = Astro.props
+
+const pageTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.name
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
 ---
 
 <!doctype html>
@@ -10,10 +24,32 @@ import { siteConfig } from '../config/site'
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+
+		<!-- Canonical & generator -->
+		<link rel="canonical" href={canonicalURL} />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Favicons -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{siteConfig.name}</title>
+
+		<!-- Primary meta -->
+		<title>{pageTitle}</title>
+		<meta name="description" content={description} />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:site_name" content={siteConfig.name} />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		{ogImage && <meta property="og:image" content={ogImage} />}
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={description} />
+		{ogImage && <meta name="twitter:image" content={ogImage} />}
 	</head>
 	<body class="flex flex-col min-h-screen">
     <Header />

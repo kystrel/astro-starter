@@ -16,6 +16,7 @@ interface SocialLink {
 interface SiteConfig {
   name: string
   tagline: string
+  description: string
   logo: string
   colors: {
     primary: string
@@ -30,6 +31,8 @@ interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: 'Astro Starter',
   tagline: 'A minimal template to start building\nfast, modern websites.',
+  description:
+    'A minimal Astro starter template for building fast, modern websites with Tailwind CSS and DaisyUI.',
   logo: '/favicon.svg',
   colors: {
     primary: 'primary',
