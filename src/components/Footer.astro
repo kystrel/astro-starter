@@ -1,0 +1,52 @@
+---
+import { ChessKnight } from '@lucide/astro'
+
+const navGroups = [
+  {
+    title: 'Quick Links',
+    links: [
+      { label: 'Home', href: '#' },
+      { label: 'Services', href: '#' },
+      { label: 'About', href: '#' },
+    ],
+  },
+  {
+    title: 'More',
+    links: [
+      { label: 'Testimonials', href: '#' },
+      { label: 'Contact', href: '#' },
+      { label: 'Menu', href: '#' },
+    ],
+  },
+  {
+    title: 'Connect',
+    links: [
+      { label: 'Instagram', href: '#' },
+      { label: 'Facebook', href: '#' },
+      { label: 'Twitter', href: '#' },
+    ],
+  },
+]
+---
+
+<footer class="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
+  <aside>
+    <ChessKnight />
+    <p class="text-lg font-bold">Astro Starter</p>
+    <p class="text-base-content/60">A minimal template to start building<br />fast, modern websites.</p>
+  </aside>
+  {navGroups.map(({ title, links }) => (
+    <nav>
+      <h6 class="footer-title">{title}</h6>
+      {links.map(({ label, href }) => (
+        <a href={href} class="link link-hover">{label}</a>
+      ))}
+    </nav>
+  ))}
+</footer>
+<div class="bg-base-200 w-full">
+<hr class="border-base-300 mx-10" />
+</div>
+<footer class="footer footer-center bg-base-200 text-base-content p-4">
+  <p>© {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+</footer>

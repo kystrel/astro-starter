@@ -1,0 +1,40 @@
+---
+import { ChessKnight, Menu } from '@lucide/astro'
+
+const navLinks = [
+  { label: 'Link 1', href: '#' },
+  { label: 'Link 2', href: '#' },
+  { label: 'Link 3', href: '#' },
+]
+---
+
+<div class="max-lg:collapse bg-base-200 lg:mb-48 shadow-sm w-full rounded-md">
+  <input id="navbar-1-toggle" class="peer hidden" type="checkbox" />
+  <label for="navbar-1-toggle" class="fixed inset-0 hidden max-lg:peer-checked:block" aria-label="Close menu"></label>
+  <div class="collapse-title navbar">
+    <div class="navbar-start">
+      <label for="navbar-1-toggle" class="btn btn-ghost lg:hidden">
+        <Menu class="h-5 w-5" />
+      </label>
+      <a href="/" class="btn btn-ghost text-xl"><ChessKnight />Astro Starter</a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
+        {navLinks.map(({ label, href }) => (
+          <li><a href={href}>{label}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div class="navbar-end">
+      <a href="#" class="btn btn-primary">Get Started</a>
+    </div>
+  </div>
+
+  <div class="collapse-content lg:hidden z-1">
+    <ul class="menu">
+      {navLinks.map(({ label, href }) => (
+        <li><a href={href}>{label}</a></li>
+      ))}
+    </ul>
+  </div>
+</div>
