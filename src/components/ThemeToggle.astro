@@ -1,0 +1,59 @@
+---
+import { Moon, Sun } from '@lucide/astro'
+import { siteConfig } from '../config/site'
+
+const { light, dark } = siteConfig.theme
+---
+
+<button
+  id="theme-toggle"
+  aria-label="Toggle color theme"
+  class="btn btn-ghost btn-sm btn-circle"
+  data-light={light}
+  data-dark={dark}
+>
+  <Sun id="theme-icon-light" class="h-5 w-5" />
+  <Moon id="theme-icon-dark" class="h-5 w-5 hidden" />
+</button>
+
+<script>
+  const STORAGE_KEY = 'theme'
+
+  function getSystemTheme(): string {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }
+
+  function applyTheme(theme: string, lightTheme: string, darkTheme: string) {
+    const daisyTheme = theme === 'dark' ? darkTheme : lightTheme
+    document.documentElement.setAttribute('data-theme', daisyTheme)
+
+    const iconLight = document.getElementById('theme-icon-light')
+    const iconDark = document.getElementById('theme-icon-dark')
+    if (iconLight && iconDark) {
+      iconLight.classList.toggle('hidden', theme === 'dark')
+      iconDark.classList.toggle('hidden', theme !== 'dark')
+    }
+  }
+
+  function init() {
+    const btn = document.getElementById('theme-toggle')
+    if (!btn) return
+
+    const lightTheme = btn.dataset.light ?? 'light'
+    const darkTheme = btn.dataset.dark ?? 'dark'
+    const stored = localStorage.getItem(STORAGE_KEY)
+    const active = stored ?? getSystemTheme()
+
+    applyTheme(active, lightTheme, darkTheme)
+
+    btn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme')
+      const next = current === darkTheme ? lightTheme : darkTheme
+      const nextMode = next === darkTheme ? 'dark' : 'light'
+      localStorage.setItem(STORAGE_KEY, nextMode)
+      applyTheme(nextMode, lightTheme, darkTheme)
+    })
+  }
+
+  init()
+</script>
