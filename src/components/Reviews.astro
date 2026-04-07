@@ -1,0 +1,69 @@
+---
+import { Star } from '@lucide/astro'
+
+const reviews = [
+  {
+    quote:
+      "Forsooth, mine eyes hath ne'er beheld so fair an establishment. The warmth of the hearthfire and the generosity of the host doth surpass all I have known in mine wanderings. Verily, I shall return hence with all my kin.",
+    name: 'Rhiannon ferch Hefeydd',
+    role: 'Princess of Dyfed',
+    initials: 'RH',
+    avatarBg: 'bg-warning/30',
+  },
+  {
+    quote:
+      "By the bones of mine ancestors, the victuals here are of the highest craft. Each morsel doth speak of great care and ancient wisdom in its making. Would that I might dwell here evermore and sup upon such fare each eve.",
+    name: 'Manawydan fab Llŷr',
+    role: 'Son of Llŷr',
+    initials: 'ML',
+    avatarBg: 'bg-primary/30',
+  },
+  {
+    quote:
+      "Yea, this place hath the spirit of a true mead-hall, where good fellowship doth abound and no man departeth with an empty belly nor a sorrowful heart. A gem most rare in these latter days.",
+    name: 'Pryderi ap Pwyll',
+    role: 'Lord of the Seven Cantrevs',
+    initials: 'PP',
+    avatarBg: 'bg-error/30',
+  },
+]
+---
+
+<section class="py-20 bg-base-200">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl lg:text-5xl font-bold mb-4">What Our Guests Say</h2>
+      <p class="text-base-content/60 max-w-xl mx-auto">
+        Take not our word alone. Hear ye from those who have graced these halls.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        reviews.map(({ quote, name, role, initials, avatarBg }) => (
+          <div class="card bg-base-100 shadow-sm">
+            <div class="card-body gap-4">
+              <div class="flex gap-1">
+                {Array.from({ length: 5 }).map(() => (
+                  <Star class="text-warning fill-warning size-5" />
+                ))}
+              </div>
+              <p class="text-base-content/70 leading-relaxed text-sm flex-1">"{quote}"</p>
+              <div class="flex items-center gap-3 mt-2">
+                <div
+                  class={`w-10 h-10 rounded-full ${avatarBg} flex items-center justify-center shrink-0`}
+                >
+                  <span class="text-xs font-semibold text-base-content/70">{initials}</span>
+                </div>
+                <div>
+                  <p class="font-semibold text-sm">{name}</p>
+                  <p class="text-base-content/60 text-xs">{role}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

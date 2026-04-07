@@ -2,19 +2,21 @@
 import heroImg from '../assets/hassan-pasha-nEbMedmVwgw-unsplash.jpg'
 import Hero from '../components/Hero.astro'
 import Offerings from '../components/Offerings.astro'
+import Reviews from '../components/Reviews.astro'
 import Story from '../components/Story.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Home">
   <Hero
-    headlinePrefix="Lorem Ipsum"
-    headlineAccent="Dolor Sit Amet"
-    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim."
-    primaryCta={{ label: "View Menu", href: "#" }}
-    secondaryCta={{ label: "Our Story", href: "#" }}
+    headlinePrefix="Enter the"
+    headlineAccent="Castle Grounds"
+    description="Tournaments, festivals, and fellowship hath filled these grounds for fourscore years. Come see what awaiteth beyond the gate."
+    primaryCta={{ label: "See What's On", href: "#" }}
+    secondaryCta={{ label: "Our Story", href: "#story" }}
     image={{ src: heroImg, alt: "Chess board" }}
   />
   <Offerings />
   <Story />
+  <Reviews />
 </Layout>
