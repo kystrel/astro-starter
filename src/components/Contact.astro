@@ -1,0 +1,90 @@
+---
+import { Clock, Mail, MapPin, Phone } from '@lucide/astro'
+import { siteConfig } from '../config/site'
+
+const { business } = siteConfig
+
+const infoItems = [
+  {
+    icon: MapPin,
+    label: 'Address',
+    value: business?.address,
+    color: 'warning',
+  },
+  { icon: Phone, label: 'Phone', value: business?.phone, color: 'primary' },
+  { icon: Mail, label: 'Email', value: business?.email, color: 'error' },
+  { icon: Clock, label: 'Hours', value: business?.hours, color: 'secondary' },
+]
+---
+
+<section class="py-20 bg-base-100">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div>
+        <h2 class="text-4xl lg:text-5xl font-bold mb-4">Seek Us Out</h2>
+        <p class="text-base-content/60 leading-relaxed mb-10">
+          Hath thou need to send word? Ride hither to our gates or dispatch a message and we shall
+          reply with all haste.
+        </p>
+
+        <div class="flex flex-col gap-6">
+          {
+            infoItems.map(({ icon: Icon, label, value, color }) =>
+              value ? (
+                <div class="flex items-start gap-4">
+                  <div class={`rounded-full bg-${color}/15 p-3 shrink-0`}>
+                    <Icon class={`text-${color} size-5`} />
+                  </div>
+                  <div>
+                    <p class="font-semibold mb-1">{label}</p>
+                    <p class="text-base-content/60">{value}</p>
+                  </div>
+                </div>
+              ) : null
+            )
+          }
+        </div>
+      </div>
+
+      <div class="card bg-primary/10">
+        <div class="card-body gap-6">
+          <h3 class="text-2xl font-bold">Send Word to Us</h3>
+
+          <form>
+            <div class="flex flex-col gap-5">
+              <div class="flex flex-col gap-2">
+                <label class="font-medium text-sm" for="contact-name">Name</label>
+                <input
+                  id="contact-name"
+                  class="input input-bordered w-full bg-base-100"
+                  type="text"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label class="font-medium text-sm" for="contact-email">Email</label>
+                <input
+                  id="contact-email"
+                  class="input input-bordered w-full bg-base-100"
+                  type="email"
+                  placeholder="your@email.com"
+                />
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label class="font-medium text-sm" for="contact-message">Message</label>
+                <textarea
+                  id="contact-message"
+                  class="textarea textarea-bordered w-full bg-base-100 h-32"
+                  placeholder="How can we help you?"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-full">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
