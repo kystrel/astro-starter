@@ -1,6 +1,7 @@
 # Astro Starter
 
 [![CI](https://github.com/kystrel/astro-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/kystrel/astro-starter/actions/workflows/ci.yml)
+[![Deploy](https://github.com/kystrel/astro-starter/actions/workflows/deploy.yml/badge.svg)](https://github.com/kystrel/astro-starter/actions/workflows/deploy.yml)
 
 Personal starter for future Astro projects
 
