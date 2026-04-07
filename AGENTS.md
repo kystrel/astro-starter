@@ -1,17 +1,18 @@
 # Project
 
-Astro starter template. Stack: **Astro 6**, **Tailwind CSS 4**, **DaisyUI 5**, **TypeScript**, **Biome** (lint + format), **pnpm**.
+Personal starter template for building and customizing websites. Stack: **Astro 6**, **Tailwind CSS 4**, **DaisyUI 5**, **TypeScript**, **Biome** (lint + format), **pnpm**.
 
 ## Source Layout
 
 ```
 src/
-  pages/       # File-based routes (.astro, .md, .ts)
+  pages/       # File-based routes (.astro, .ts)
   components/  # Reusable Astro/UI components
   layouts/     # Page layout wrappers
-  styles/      # Global CSS
-  assets/      # Static assets processed by Astro
-public/        # Unprocessed static files (copied as-is)
+  config/      # Site-wide configuration (site.ts — primary entry point for customization)
+  styles/      # Global CSS (Tailwind + DaisyUI imports)
+  assets/      # Images and SVGs processed by Astro — use <Image /> from astro:assets
+public/        # Static files copied as-is (favicon.ico, favicon.svg)
 ```
 
 # Commands
@@ -24,16 +25,48 @@ pnpm preview       # Serve production build locally
 pnpm lint          # Lint (Biome CI mode, no writes)
 pnpm lint:fix      # Lint + auto-fix
 pnpm format        # Auto-format entire repo
-pnpm exec astro check   # TypeScript + diagnostics
-pnpm exec astro sync    # Regenerate TS types
+pnpm check         # TypeScript + Astro diagnostics
+pnpm astro sync    # Regenerate .astro TS types
 ```
+
+# Configuration
+
+`src/config/site.ts` is the single source of truth for all site-level data. Edit this first when customizing a site:
+
+- **Site metadata**: `name`, `tagline`, `description`, `ogImage`, `siteUrl`
+- **Navigation**: `nav` (header links), `footerGroups` (footer link columns)
+- **Social**: `social` array of `{ platform, href }` — rendered in the footer
+- **Business info** (optional): `phone`, `email`, `address`, `hours`, `coordinates`
+- **Form target** (optional): `formAction` — URL for contact form POST submissions
+
+`astro.config.mjs` reads `siteConfig.siteUrl` for the `site` field. Keep them in sync.
+
+# Components
+
+Two content patterns are in use:
+
+- **Props-driven** — `Hero.astro` accepts all copy and image as explicit props. Content is passed from `index.astro` at the call site.
+- **Hardcoded content** — `Offerings.astro`, `Story.astro`, `Reviews.astro` have inline placeholder copy (castle-themed demo). Edit these component files directly when customizing a site.
+
+`Layout.astro` wraps every page with `BaseHead` + `Header` + `<slot>` + `Footer`. `BaseHead.astro` accepts optional prop overrides and falls back to `siteConfig` defaults.
+
+# Icons
+
+`@lucide/astro` is the icon library. Import named icons directly from the package:
+
+```ts
+import { ChessKnight, Menu, Crown, Swords, Trophy, Star } from '@lucide/astro'
+```
+
+Browse available icons at https://lucide.dev/icons/
 
 # Style Guide
 
 Follow the conventions and patterns you detect in surrounding code. Formatting rules are defined in [biome.json](./biome.json) and enforced by Biome.
 
-- Always prefer daisyUI component classes over raw Tailwind classes when a daisyUI equivalent exists.
-- Use daisyUI semantic color names (`primary`, `secondary`, `base-100`, etc.) over raw Tailwind or hex colors.
+- Always prefer DaisyUI component classes over raw Tailwind classes when a DaisyUI equivalent exists.
+- Use DaisyUI semantic color names (`primary`, `secondary`, `base-100`, etc.) over raw Tailwind or hex colors.
+- Images in `src/assets/` must use `<Image />` from `astro:assets` — never a plain `<img>` tag.
 
 # Collaboration
 
@@ -49,7 +82,7 @@ Follow the conventions and patterns you detect in surrounding code. Formatting r
 
 - Do not use `npm` or `yarn` — this repo uses `pnpm` exclusively.
 - Do not start alternative web servers (`python -m http.server`, `npx serve`, etc.) — use `pnpm dev` or `pnpm preview`.
-- Do not use raw hex colors or hardcoded Tailwind color classes when a daisyUI semantic token covers the use case.
+- Do not use raw hex colors or hardcoded Tailwind color classes when a DaisyUI semantic token covers the use case.
 - Do not install packages without confirming with the user first.
 
 # Reference Docs
