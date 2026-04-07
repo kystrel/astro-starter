@@ -5,7 +5,12 @@ import { siteConfig } from '../config/site'
 const { business } = siteConfig
 
 const infoItems = [
-  { icon: MapPin, label: 'Address', value: business?.address, color: 'warning' },
+  {
+    icon: MapPin,
+    label: 'Address',
+    value: business?.address,
+    color: 'warning',
+  },
   { icon: Phone, label: 'Phone', value: business?.phone, color: 'primary' },
   { icon: Mail, label: 'Email', value: business?.email, color: 'error' },
   { icon: Clock, label: 'Hours', value: business?.hours, color: 'secondary' },
