@@ -1,0 +1,58 @@
+---
+import { Crown, Swords, Trophy } from '@lucide/astro'
+
+const offerings = [
+  {
+    icon: Crown,
+    iconBg: 'bg-warning/15',
+    iconColor: 'text-warning',
+    title: 'Lorem Ipsum Dolor',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  },
+  {
+    icon: Swords,
+    iconBg: 'bg-error/15',
+    iconColor: 'text-error',
+    title: 'Consectetur Adipiscing',
+    description:
+      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  },
+  {
+    icon: Trophy,
+    iconBg: 'bg-primary/15',
+    iconColor: 'text-primary',
+    title: 'Sed Do Eiusmod',
+    description:
+      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+  },
+]
+---
+
+<section class="py-20 bg-base-200">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl lg:text-5xl font-bold mb-4">Lorem Ipsum Offer</h2>
+      <p class="text-base-content/60 max-w-xl mx-auto">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        offerings.map(({ icon: Icon, iconBg, iconColor, title, description }) => (
+          <div class="card bg-base-100 shadow-sm">
+            <div class="card-body">
+              <div class={`w-14 h-14 rounded-full ${iconBg} flex items-center justify-center mb-2`}>
+                <Icon class={`${iconColor} size-7`} />
+              </div>
+              <h3 class="card-title">{title}</h3>
+              <p class="text-base-content/60 text-sm leading-relaxed">{description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
