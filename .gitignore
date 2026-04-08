@@ -14,8 +14,7 @@ yarn-error.log*
 pnpm-debug.log*
 
 # environment variables
-.env
-.env.production
+.env*
 
 # macOS-specific files
 .DS_Store
@@ -24,4 +23,4 @@ pnpm-debug.log*
 .idea/
 
 # agent files
-.agents
+.agents/
