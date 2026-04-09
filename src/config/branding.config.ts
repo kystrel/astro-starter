@@ -29,6 +29,14 @@ interface BusinessInfo {
   schemaType?: string
 }
 
+interface ThemeConfig {
+  // DaisyUI v5 theme name applied when the user prefers light mode.
+  // See https://daisyui.com/docs/themes/ for the full list.
+  light: string
+  // DaisyUI v5 theme name applied when the user prefers dark mode.
+  dark: string
+}
+
 interface BrandingConfig {
   site: {
     // Canonical URL — no trailing slash. Must match astro.config.mjs `site`.
@@ -39,6 +47,8 @@ interface BrandingConfig {
     ogImage: string
     logo: string
   }
+  // Light/dark DaisyUI themes. Defaults to "light" / "dark" if omitted.
+  theme?: ThemeConfig
   // Contact and location data. Omit entirely for remote-only businesses.
   business?: BusinessInfo
   nav: NavLink[]
@@ -58,6 +68,11 @@ export const brandingConfig: BrandingConfig = {
       'A minimal Astro starter template for building fast, modern websites with Tailwind CSS and DaisyUI.',
     ogImage: `${import.meta.env.BASE_URL}og-image.png`,
     logo: '/favicon.svg',
+  },
+
+  theme: {
+    light: 'corporate',
+    dark: 'business',
   },
 
   business: {
