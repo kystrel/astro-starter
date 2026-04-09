@@ -3,11 +3,11 @@
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
-import { siteConfig } from './src/config/site.ts'
+import { brandingConfig } from './src/config/branding.config.ts'
 
 // https://astro.build/config
 export default defineConfig({
-  site: siteConfig.siteUrl,
+  site: brandingConfig.site.siteUrl,
   base: '/astro-starter',
   integrations: [sitemap()],
   vite: {

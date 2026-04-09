@@ -1,15 +1,15 @@
 ---
 import { ChessKnight } from '@lucide/astro'
-import { siteConfig } from '../config/site'
+import { brandingConfig } from '../config/branding.config'
 ---
 
 <footer class="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
   <aside>
     <ChessKnight />
-    <p class="text-lg font-bold">{siteConfig.name}</p>
-    <p class="text-base-content/60">{siteConfig.tagline}</p>
+    <p class="text-lg font-bold">{brandingConfig.site.name}</p>
+    <p class="text-base-content/60">{brandingConfig.site.tagline}</p>
   </aside>
-  {siteConfig.footerGroups.map(({ title, links }) => (
+  {brandingConfig.footerGroups.map(({ title, links }) => (
     <nav>
       <h6 class="footer-title">{title}</h6>
       {links.map(({ label, href }) => (
@@ -19,7 +19,7 @@ import { siteConfig } from '../config/site'
   ))}
   <nav>
     <h6 class="footer-title">Connect</h6>
-    {siteConfig.social.map(({ platform, href }) => (
+    {brandingConfig.social.map(({ platform, href }) => (
       <a href={href} class="link link-hover">{platform}</a>
     ))}
   </nav>
@@ -28,5 +28,5 @@ import { siteConfig } from '../config/site'
 <hr class="border-base-300 mx-10" />
 </div>
 <footer class="footer footer-center bg-base-200 text-base-content p-4">
-  <p>© {new Date().getFullYear()} {siteConfig.copyright}. All rights reserved.</p>
+  <p>© {new Date().getFullYear()} {brandingConfig.copyright}. All rights reserved.</p>
 </footer>
