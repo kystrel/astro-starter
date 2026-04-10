@@ -9,7 +9,7 @@ src/
   pages/       # File-based routes (.astro, .ts)
   components/  # Reusable Astro/UI components
   layouts/     # Page layout wrappers
-  config/      # Site-wide configuration (site.ts — primary entry point for customization)
+  config/      # Site-wide configuration (branding.config.ts — primary entry point for customization)
   styles/      # Global CSS (Tailwind + DaisyUI imports)
   assets/      # Images and SVGs processed by Astro — use <Image /> from astro:assets
 public/        # Static files copied as-is (favicon.ico, favicon.svg)
@@ -31,24 +31,25 @@ pnpm astro sync    # Regenerate .astro TS types
 
 # Configuration
 
-`src/config/site.ts` is the single source of truth for all site-level data. Edit this first when customizing a site:
+`src/config/branding.config.ts` is the single source of truth for all site-level data. Edit this first when customizing a site:
 
-- **Site metadata**: `name`, `tagline`, `description`, `ogImage`, `siteUrl`
+- **Site metadata**: `name`, `tagline`, `description`, `ogImage`, `siteUrl`, `logo`
 - **Navigation**: `nav` (header links), `footerGroups` (footer link columns)
 - **Social**: `social` array of `{ platform, href }` — rendered in the footer
 - **Business info** (optional): `phone`, `email`, `address`, `hours`, `coordinates`
+- **Copyright**: `copyright` — company name used in the footer copyright line
 - **Form target** (optional): `formAction` — URL for contact form POST submissions
 
-`astro.config.mjs` reads `siteConfig.siteUrl` for the `site` field. Keep them in sync.
+`astro.config.mjs` reads `brandingConfig.site.siteUrl` for the `site` field. Keep them in sync.
 
 # Components
 
 Two content patterns are in use:
 
 - **Props-driven** — `Hero.astro` accepts all copy and image as explicit props. Content is passed from `index.astro` at the call site.
-- **Hardcoded content** — `Offerings.astro`, `Story.astro`, `Reviews.astro` have inline placeholder copy (castle-themed demo). Edit these component files directly when customizing a site.
+- **Hardcoded content** — `Offerings.astro`, `Story.astro`, `Reviews.astro`, `Contact.astro` have inline placeholder copy (castle-themed demo). Edit these component files directly when customizing a site.
 
-`Layout.astro` wraps every page with `BaseHead` + `Header` + `<slot>` + `Footer`. `BaseHead.astro` accepts optional prop overrides and falls back to `siteConfig` defaults.
+`Layout.astro` wraps every page with `BaseHead` + `Header` + `<slot>` + `Footer`. `BaseHead.astro` accepts optional prop overrides and falls back to `brandingConfig` defaults. `Layout.astro` also exposes `<slot name="head" />` inside `<head>` for per-page `<link>` or `<script>` injection.
 
 # Icons
 
