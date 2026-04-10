@@ -50,7 +50,7 @@ Personal starter for future Astro projects
 
 ## Configuration
 
-All site-wide settings (name, description, nav links, footer groups, social links, business info, OG image, colors) live in [`src/config/site.ts`](src/config/site.ts). Edit that file to rebrand the starter.
+All site-wide settings (name, description, nav links, footer groups, social links, business info, OG image) live in [`src/config/branding.config.ts`](src/config/branding.config.ts). Edit that file to rebrand the starter.
 
 ## Deploy
 
@@ -61,25 +61,28 @@ The site deploys to GitHub Pages via the CI workflow on every push to `master`. 
 ```text
 /
 ├── public/
+│   ├── favicon.ico
 │   └── favicon.svg
 ├── src/
 │   ├── assets/
-│   │   ├── astro.svg
-│   │   ├── background.svg
 │   │   └── *.jpg
 │   ├── components/
 │   │   ├── BaseHead.astro
+│   │   ├── Contact.astro
 │   │   ├── Footer.astro
 │   │   ├── Header.astro
 │   │   ├── Hero.astro
 │   │   ├── Offerings.astro
+│   │   ├── Reviews.astro
 │   │   └── Story.astro
 │   ├── config/
-│   │   └── site.ts
+│   │   └── branding.config.ts
 │   ├── layouts/
 │   │   └── Layout.astro
 │   ├── pages/
-│   │   └── index.astro
+│   │   ├── 404.astro
+│   │   ├── index.astro
+│   │   └── robots.txt.ts
 │   └── styles/
 │       └── global.css
 └── package.json
