@@ -1,5 +1,17 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+/*
+  DaisyUI theme configuration.
+  Update the theme names here to match branding.config.ts `theme.light` and `theme.dark`.
+  Use `--default` on the light theme so it applies without a data-theme attribute during SSR.
+  The ThemeToggle component and the anti-FODT script in Layout.astro handle runtime switching.
+  See https://daisyui.com/docs/themes/ for all available theme names.
+*/
+@plugin "daisyui" {
+  themes:
+    corporate --default,
+    business --prefersdark;
+}
 
 html,
 body {
