@@ -13,7 +13,7 @@ importers:
         version: 3.7.2
       '@lucide/astro':
         specifier: ^1.7.0
-        version: 1.8.0(astro@6.1.6(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(typescript@6.0.2)(yaml@2.8.3))
+        version: 1.16.0(astro@6.1.6(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(typescript@6.0.2)(yaml@2.8.3))
       '@tailwindcss/vite':
         specifier: ^4.2.2
         version: 4.2.2(vite@7.3.2(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.3))
@@ -519,8 +519,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@lucide/astro@1.8.0':
-    resolution: {integrity: sha512-ZrzTu1L8b2XEA/hfCB0ZqTCQN3BXjvomuSaTHJzIBDFggOUTyzw55/klEo6tDFSl54d0KQTvcI1qJ7RgAVuCyg==}
+  '@lucide/astro@1.16.0':
+    resolution: {integrity: sha512-RWT+9Y1UAMnz/oiJMssnQTSeBM0AbwzK1SsOeY2zQungN7PQxm4Pp4bNxIVp/Wu77TBXkpPoaIyxYqagZVjWGQ==}
     peerDependencies:
       astro: ^4 || ^5 || ^6
 
@@ -831,6 +831,7 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
+    deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
   '@volar/kit@2.4.28':
     resolution: {integrity: sha512-cKX4vK9dtZvDRaAzeoUdaAJEew6IdxHNCRrdp5Kvcl6zZOqb6jTOfk3kXkIkG3T7oTFXguEMt5+9ptyqYR84Pg==}
@@ -2487,7 +2488,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lucide/astro@1.8.0(astro@6.1.6(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(typescript@6.0.2)(yaml@2.8.3))':
+  '@lucide/astro@1.16.0(astro@6.1.6(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(typescript@6.0.2)(yaml@2.8.3))':
     dependencies:
       astro: 6.1.6(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(typescript@6.0.2)(yaml@2.8.3)
 
