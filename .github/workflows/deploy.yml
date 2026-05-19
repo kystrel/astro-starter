@@ -36,6 +36,7 @@ jobs:
               - 'public/**'
               - 'astro.config.*'
               - 'package.json'
+              - 'pnpm-workspace.yaml'
               - 'pnpm-lock.yaml'
               - 'tsconfig.json'
 
@@ -49,11 +50,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Setup pnpm
-<<<<<<< Updated upstream
-        uses: pnpm/action-setup@v6
-=======
         uses: pnpm/action-setup@0e279bb959325dab635dd2c09392533439d90093 # v6
->>>>>>> Stashed changes
 
       - name: Setup Node.js
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
@@ -75,11 +72,7 @@ jobs:
             --base "${{ steps.pages.outputs.base_path }}"
 
       - name: Upload artifact
-<<<<<<< Updated upstream
-        uses: actions/upload-pages-artifact@v5
-=======
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
->>>>>>> Stashed changes
         with:
           path: dist
 
