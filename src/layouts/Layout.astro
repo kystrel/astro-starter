@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets'
 import type { ComponentProps } from 'astro/types'
 import '../styles/global.css'
 import BaseHead from '../components/BaseHead.astro'
@@ -14,6 +15,7 @@ const { title, description, ogImage, article } = Astro.props
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} ogImage={ogImage} article={article} />
+		<Font cssVariable="--font-inter" preload />
 		<slot name="head" />
 	</head>
 	<body class="flex flex-col min-h-screen">
