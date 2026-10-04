@@ -5,7 +5,11 @@ allowBuilds:
   sharp: true
 
 overrides:
-  devalue: "6.0.2"
-  fast-uri: "4.2.1"
+  devalue: "5.9.3"
+  fast-uri: "3.1.7"
+  http-cache-semantics: "4.3.0"
+  js-yaml: "4.3.2"
   postcss: "8.5.28"
+  smol-toml: "1.7.1"
+  svgo: "4.1.0"
   yaml: "2.9.1"
