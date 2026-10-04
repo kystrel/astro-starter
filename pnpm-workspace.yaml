@@ -10,6 +10,7 @@ overrides:
   http-cache-semantics: "4.3.0"
   js-yaml: "4.3.2"
   postcss: "8.5.28"
+  sharp: "0.35.4"
   smol-toml: "1.7.1"
   svgo: "4.1.0"
   yaml: "2.9.1"
