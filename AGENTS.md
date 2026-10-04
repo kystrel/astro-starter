@@ -1,6 +1,6 @@
 # Project
 
-Personal starter template for building and customizing websites. Stack: **Astro 6**, **Tailwind CSS 4**, **DaisyUI 5**, **TypeScript**, **Biome** (lint + format), **pnpm**.
+Personal starter template for building and customizing websites. Stack: **Astro 7**, **Tailwind CSS 4**, **DaisyUI 5**, **TypeScript**, **Biome** (lint + format), **pnpm**.
 
 ## Source Layout
 
