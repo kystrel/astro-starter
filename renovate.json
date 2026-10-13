@@ -4,18 +4,23 @@
   "baseBranchPatterns": ["master"],
   "dependencyDashboard": true,
   "configMigration": true,
-  "schedule": ["before 6am on Monday"],
+  "schedule": ["* 0-4 * * 1"],
   "timezone": "America/Chicago",
   "prHourlyLimit": 0,
-  "prConcurrentLimit": 3,
+  "prConcurrentLimit": 2,
   "platformAutomerge": false,
   "rangeStrategy": "pin",
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": false,
-    "schedule": ["before 6am on Monday"]
+    "schedule": ["* 0-4 * * 1"]
   },
   "packageRules": [
+    {
+      "matchDatasources": ["npm"],
+      "minimumReleaseAge": "1 day",
+      "internalChecksFilter": "strict"
+    },
     {
       "matchUpdateTypes": ["patch"],
       "groupName": "patch updates",
@@ -35,9 +40,76 @@
     },
     {
       "matchManagers": ["github-actions"],
-      "groupName": "github actions",
       "minimumReleaseAge": "5 days",
       "automerge": true
+    },
+    {
+      "matchManagers": ["npm", "custom.regex"],
+      "matchPackageNames": ["!node", "!pnpm"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "pinDigest", "digest"],
+      "groupName": "library updates",
+      "minimumGroupSize": 1,
+      "groupSingleUpdates": true
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "pinDigest", "digest"],
+      "groupName": "GitHub Actions updates",
+      "minimumGroupSize": 1,
+      "groupSingleUpdates": true
+    },
+    {
+      "matchManagers": ["npm", "nvm", "nodenv", "dockerfile", "docker-compose"],
+      "matchPackageNames": ["node", "pnpm"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "pinDigest", "digest"],
+      "groupName": "toolchain updates",
+      "minimumGroupSize": 1,
+      "groupSingleUpdates": true
+    },
+    {
+      "matchManagers": ["npm", "custom.regex"],
+      "matchPackageNames": ["!node", "!pnpm"],
+      "matchUpdateTypes": ["patch"],
+      "groupName": "library patch updates",
+      "minimumGroupSize": 1,
+      "groupSingleUpdates": true
+    },
+    {
+      "matchManagers": ["npm", "custom.regex"],
+      "matchPackageNames": ["!node", "!pnpm"],
+      "matchUpdateTypes": ["minor"],
+      "groupName": "library minor updates",
+      "minimumGroupSize": 1,
+      "groupSingleUpdates": true
+    },
+    {
+      "matchManagers": ["npm", "nvm", "nodenv", "dockerfile", "docker-compose"],
+      "matchPackageNames": ["node", "pnpm"],
+      "matchUpdateTypes": ["patch"],
+      "groupName": "toolchain patch updates",
+      "minimumGroupSize": 1,
+      "groupSingleUpdates": true
+    },
+    {
+      "matchManagers": ["npm", "nvm", "nodenv", "dockerfile", "docker-compose"],
+      "matchPackageNames": ["node", "pnpm"],
+      "matchUpdateTypes": ["minor"],
+      "groupName": "toolchain minor updates",
+      "minimumGroupSize": 1,
+      "groupSingleUpdates": true
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor"],
+      "groupName": "GitHub Actions minor updates",
+      "minimumGroupSize": 1,
+      "groupSingleUpdates": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
     }
-  ]
+  ],
+  "updateNotScheduled": false,
+  "branchConcurrentLimit": 2
 }
