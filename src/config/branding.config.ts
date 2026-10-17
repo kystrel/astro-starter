@@ -49,7 +49,7 @@ interface BrandingConfig {
   formAction?: string
 }
 
-const homeUrl = import.meta.env.BASE_URL.replace(/\/?$/, '/')
+export const homeUrl = import.meta.env.BASE_URL.replace(/\/?$/, '/')
 
 export const brandingConfig: BrandingConfig = {
   site: {
