@@ -8,7 +8,6 @@ const reviews = [
     name: 'Rhiannon ferch Hefeydd',
     role: 'Princess of Dyfed',
     initials: 'RH',
-    avatarBg: 'bg-warning/30',
   },
   {
     quote:
@@ -16,7 +15,6 @@ const reviews = [
     name: 'Manawydan fab Llŷr',
     role: 'Son of Llŷr',
     initials: 'ML',
-    avatarBg: 'bg-primary/30',
   },
   {
     quote:
@@ -24,12 +22,11 @@ const reviews = [
     name: 'Pryderi ap Pwyll',
     role: 'Lord of the Seven Cantrevs',
     initials: 'PP',
-    avatarBg: 'bg-error/30',
   },
 ]
 ---
 
-<section class="py-20 bg-base-200">
+<section id="reviews" class="py-20 bg-base-200">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2 class="text-4xl lg:text-5xl font-bold mb-4">What Our Guests Say</h2>
@@ -40,20 +37,20 @@ const reviews = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
-        reviews.map(({ quote, name, role, initials, avatarBg }) => (
+        reviews.map(({ quote, name, role, initials }) => (
           <div class="card bg-base-100 shadow-sm">
             <div class="card-body gap-4">
-              <div class="flex gap-1">
+              <div class="flex gap-1" role="img" aria-label="5 out of 5 stars">
                 {Array.from({ length: 5 }).map(() => (
-                  <Star class="text-warning fill-warning size-5" />
+                  <Star class="text-warning fill-warning size-5" aria-hidden="true" />
                 ))}
               </div>
               <p class="text-base-content/70 leading-relaxed text-sm flex-1">"{quote}"</p>
               <div class="flex items-center gap-3 mt-2">
-                <div
-                  class={`w-10 h-10 rounded-full ${avatarBg} flex items-center justify-center shrink-0`}
-                >
-                  <span class="text-xs font-semibold text-base-content/70">{initials}</span>
+                <div class="avatar avatar-placeholder shrink-0" aria-hidden="true">
+                  <div class="bg-base-300 text-base-content w-10 rounded-full">
+                    <span class="text-xs font-semibold">{initials}</span>
+                  </div>
                 </div>
                 <div>
                   <p class="font-semibold text-sm">{name}</p>

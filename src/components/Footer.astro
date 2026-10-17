@@ -5,24 +5,26 @@ import { brandingConfig } from '../config/branding.config'
 
 <footer class="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
   <aside>
-    <ChessKnight />
+    <ChessKnight aria-hidden="true" />
     <p class="text-lg font-bold">{brandingConfig.site.name}</p>
     <p class="text-base-content/60">{brandingConfig.site.tagline}</p>
   </aside>
   {brandingConfig.footerGroups.map(({ title, links }) => (
-    <nav>
-      <h6 class="footer-title">{title}</h6>
+    <nav aria-label={title}>
+      <h2 class="footer-title">{title}</h2>
       {links.map(({ label, href }) => (
         <a href={href} class="link link-hover">{label}</a>
       ))}
     </nav>
   ))}
-  <nav>
-    <h6 class="footer-title">Connect</h6>
-    {brandingConfig.social.map(({ platform, href }) => (
-      <a href={href} class="link link-hover">{platform}</a>
-    ))}
-  </nav>
+  {brandingConfig.social.length > 0 && (
+    <nav aria-label="Social links">
+      <h2 class="footer-title">Connect</h2>
+      {brandingConfig.social.map(({ platform, href }) => (
+        <a href={href} class="link link-hover">{platform}</a>
+      ))}
+    </nav>
+  )}
 </footer>
 <div class="bg-base-200 w-full">
 <hr class="border-base-300 mx-10" />

@@ -25,6 +25,7 @@ const pageTitle = title
   : brandingConfig.site.name
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href
 const resolvedOgImage = ogImage ? new URL(ogImage, Astro.site).href : undefined
+const baseUrl = import.meta.env.BASE_URL.replace(/\/?$/, '/')
 
 // ── LocalBusiness JSON-LD ────────────────────────────────────────────────────
 const { business, site } = brandingConfig
@@ -65,9 +66,9 @@ if (business) {
 <meta name="viewport" content="width=device-width" />
 <link rel="canonical" href={canonicalURL} />
 <meta name="generator" content={Astro.generator} />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" href="/favicon.ico" />
-<link rel="sitemap" href={`${import.meta.env.BASE_URL.replace(/\/?$/, '/')}sitemap-index.xml`} />
+<link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
+<link rel="icon" href={`${baseUrl}favicon.ico`} />
+<link rel="sitemap" href={`${baseUrl}sitemap-index.xml`} />
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
 <meta property="og:type" content={article ? 'article' : 'website'} />

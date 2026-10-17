@@ -1,17 +1,35 @@
 ---
 import { ChessKnight, Menu } from '@lucide/astro'
 import { brandingConfig } from '../config/branding.config'
+
+const homeUrl = import.meta.env.BASE_URL.replace(/\/?$/, '/')
 ---
 
-<div class="max-lg:collapse bg-base-200 shadow-sm w-full rounded-md">
-  <input id="navbar-1-toggle" class="peer hidden" type="checkbox" />
-  <label for="navbar-1-toggle" class="fixed inset-0 hidden max-lg:peer-checked:block" aria-label="Close menu"></label>
-  <div class="collapse-title navbar">
-    <div class="navbar-start">
-      <label for="navbar-1-toggle" class="btn btn-ghost lg:hidden">
-        <Menu class="h-5 w-5" />
-      </label>
-      <a href="/" class="btn btn-ghost text-xl"><ChessKnight />{brandingConfig.site.name}</a>
+<header class="bg-base-200 shadow-sm">
+  <nav class="navbar container mx-auto" aria-label="Main navigation">
+    <div class="navbar-start w-auto flex-1 lg:w-1/2 lg:flex-initial">
+      <button
+        type="button"
+        class="btn btn-ghost btn-square shrink-0 lg:hidden"
+        popovertarget="mobile-navigation"
+        style="anchor-name:--mobile-navigation"
+        aria-label="Open navigation menu"
+      >
+        <Menu class="size-5" aria-hidden="true" />
+      </button>
+      <ul
+        id="mobile-navigation"
+        popover
+        style="position-anchor:--mobile-navigation"
+        class="dropdown menu bg-base-200 rounded-box mt-2 w-52 max-w-[calc(100vw-2rem)] p-2 shadow-sm lg:hidden"
+      >
+        {brandingConfig.nav.map(({ label, href }) => (
+          <li><a href={href}>{label}</a></li>
+        ))}
+      </ul>
+      <a href={homeUrl} class="btn btn-ghost text-base sm:text-xl">
+        <ChessKnight class="size-5 shrink-0" aria-hidden="true" />{brandingConfig.site.name}
+      </a>
     </div>
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
@@ -20,16 +38,18 @@ import { brandingConfig } from '../config/branding.config'
         ))}
       </ul>
     </div>
-    <div class="navbar-end">
-      <a href="#" class="btn btn-primary">Get Started</a>
+    <div class="navbar-end w-auto lg:w-1/2">
+      <a href={`${homeUrl}#contact`} class="btn btn-primary">Contact Us</a>
     </div>
-  </div>
+  </nav>
+</header>
 
-  <div class="collapse-content lg:hidden z-1">
-    <ul class="menu">
-      {brandingConfig.nav.map(({ label, href }) => (
-        <li><a href={href}>{label}</a></li>
-      ))}
-    </ul>
-  </div>
-</div>
+<script>
+  const menu = document.querySelector<HTMLElement>('#mobile-navigation')
+
+  menu?.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('a')) {
+      menu.hidePopover()
+    }
+  })
+</script>

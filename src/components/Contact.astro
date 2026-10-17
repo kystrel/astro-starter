@@ -2,22 +2,41 @@
 import { Clock, Mail, MapPin, Phone } from '@lucide/astro'
 import { brandingConfig } from '../config/branding.config'
 
-const { business } = brandingConfig
+const { business, formAction } = brandingConfig
 
 const infoItems = [
   {
     icon: MapPin,
     label: 'Address',
     value: business?.address,
-    color: 'warning',
+    iconBg: 'bg-warning/15',
+    iconColor: 'text-warning',
   },
-  { icon: Phone, label: 'Phone', value: business?.phone, color: 'primary' },
-  { icon: Mail, label: 'Email', value: business?.email, color: 'error' },
-  { icon: Clock, label: 'Hours', value: business?.hours, color: 'secondary' },
+  {
+    icon: Phone,
+    label: 'Phone',
+    value: business?.phone,
+    iconBg: 'bg-primary/15',
+    iconColor: 'text-primary',
+  },
+  {
+    icon: Mail,
+    label: 'Email',
+    value: business?.email,
+    iconBg: 'bg-error/15',
+    iconColor: 'text-error',
+  },
+  {
+    icon: Clock,
+    label: 'Hours',
+    value: business?.hours,
+    iconBg: 'bg-secondary/15',
+    iconColor: 'text-secondary',
+  },
 ]
 ---
 
-<section class="py-20 bg-base-100">
+<section id="contact" class="py-20 bg-base-100">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
       <div>
@@ -29,11 +48,11 @@ const infoItems = [
 
         <div class="flex flex-col gap-6">
           {
-            infoItems.map(({ icon: Icon, label, value, color }) =>
+            infoItems.map(({ icon: Icon, label, value, iconBg, iconColor }) =>
               value ? (
                 <div class="flex items-start gap-4">
-                  <div class={`rounded-full bg-${color}/15 p-3 shrink-0`}>
-                    <Icon class={`text-${color} size-5`} />
+                  <div class:list={['rounded-full p-3 shrink-0', iconBg]}>
+                    <Icon class:list={['size-5', iconColor]} aria-hidden="true" />
                   </div>
                   <div>
                     <p class="font-semibold mb-1">{label}</p>
@@ -50,38 +69,51 @@ const infoItems = [
         <div class="card-body gap-6">
           <h3 class="text-2xl font-bold">Send Word to Us</h3>
 
-          <form>
-            <div class="flex flex-col gap-5">
-              <div class="flex flex-col gap-2">
-                <label class="font-medium text-sm" for="contact-name">Name</label>
+          {!formAction && (
+            <p id="contact-form-notice" class="text-base-content/70 text-sm">
+              This demo form is disabled. Contact us using the details above.
+            </p>
+          )}
+          <form action={formAction} method="POST" aria-describedby={!formAction ? 'contact-form-notice' : undefined}>
+            <fieldset class="fieldset gap-5" disabled={!formAction}>
+              <div class="grid gap-2">
+                <label class="label text-base-content font-medium" for="contact-name">Name</label>
                 <input
                   id="contact-name"
-                  class="input input-bordered w-full bg-base-100"
+                  name="name"
+                  autocomplete="name"
+                  required
+                  class="input w-full bg-base-100"
                   type="text"
                   placeholder="Your name"
                 />
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label class="font-medium text-sm" for="contact-email">Email</label>
+              <div class="grid gap-2">
+                <label class="label text-base-content font-medium" for="contact-email">Email</label>
                 <input
                   id="contact-email"
-                  class="input input-bordered w-full bg-base-100"
+                  name="email"
+                  autocomplete="email"
+                  required
+                  class="input w-full bg-base-100"
                   type="email"
                   placeholder="your@email.com"
                 />
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label class="font-medium text-sm" for="contact-message">Message</label>
+              <div class="grid gap-2">
+                <label class="label text-base-content font-medium" for="contact-message">Message</label>
                 <textarea
                   id="contact-message"
-                  class="textarea textarea-bordered w-full bg-base-100 h-32"
+                  name="message"
+                  required
+                  class="textarea w-full bg-base-100 h-32"
                   placeholder="How can we help you?"></textarea>
               </div>
 
               <button type="submit" class="btn btn-primary w-full">Send Message</button>
-            </div>
+            </fieldset>
           </form>
         </div>
       </div>
