@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro'
+import { homeUrl } from '../config/branding.config'
 
 export const GET: APIRoute = ({ site }) => {
-  const base = import.meta.env.BASE_URL.replace(/\/?$/, '/')
   if (!site) throw new Error('site must be set in astro.config.mjs')
-  const sitemapUrl = new URL(`${base}sitemap-index.xml`, site).href
+  const sitemapUrl = new URL(`${homeUrl}sitemap-index.xml`, site).href
 
   return new Response(
     [`User-agent: *`, `Allow: /`, ``, `Sitemap: ${sitemapUrl}`].join('\n'),

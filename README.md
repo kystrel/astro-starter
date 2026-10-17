@@ -52,6 +52,10 @@ Personal starter for future Astro projects
 
 All site-wide settings (name, description, nav links, footer groups, social links, business info, OG image) live in [`src/config/branding.config.ts`](src/config/branding.config.ts). Edit that file to rebrand the starter.
 
+Set `formAction` to your contact endpoint to enable the form. It sends `name`, `email`, and `message` in a standard HTML POST; the endpoint must validate submissions, handle spam, and provide success and error responses. Without an endpoint, the starter displays a disabled demo form.
+
+Social links are empty until configured. Set `site.ogImage` to an absolute image URL or a public path that includes the configured base (for example, `/astro-starter/og-image.png`). Leave it empty to use a text-only preview.
+
 ## Deploy
 
 The site deploys to GitHub Pages via the CI workflow on every push to `master`. The live demo is at [kystrel.github.io/astro-starter](https://kystrel.github.io/astro-starter).

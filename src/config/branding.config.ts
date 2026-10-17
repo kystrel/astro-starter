@@ -49,6 +49,8 @@ interface BrandingConfig {
   formAction?: string
 }
 
+export const homeUrl = import.meta.env.BASE_URL.replace(/\/?$/, '/')
+
 export const brandingConfig: BrandingConfig = {
   site: {
     siteUrl: 'https://kystrel.github.io',
@@ -56,7 +58,7 @@ export const brandingConfig: BrandingConfig = {
     tagline: 'A minimal template to start building\nfast, modern websites.',
     description:
       'A minimal Astro starter template for building fast, modern websites with Tailwind CSS and DaisyUI.',
-    ogImage: `${import.meta.env.BASE_URL}og-image.png`,
+    ogImage: '',
     logo: '/favicon.svg',
   },
 
@@ -70,35 +72,30 @@ export const brandingConfig: BrandingConfig = {
   },
 
   nav: [
-    { label: 'Link 1', href: '#' },
-    { label: 'Link 2', href: '#' },
-    { label: 'Link 3', href: '#' },
+    { label: 'Offerings', href: `${homeUrl}#offerings` },
+    { label: 'Our Story', href: `${homeUrl}#story` },
+    { label: 'Contact', href: `${homeUrl}#contact` },
   ],
 
   footerGroups: [
     {
       title: 'Quick Links',
       links: [
-        { label: 'Home', href: '#' },
-        { label: 'Services', href: '#' },
-        { label: 'About', href: '#' },
+        { label: 'Home', href: homeUrl },
+        { label: 'Offerings', href: `${homeUrl}#offerings` },
+        { label: 'Our Story', href: `${homeUrl}#story` },
       ],
     },
     {
       title: 'More',
       links: [
-        { label: 'Testimonials', href: '#' },
-        { label: 'Contact', href: '#' },
-        { label: 'Menu', href: '#' },
+        { label: 'Testimonials', href: `${homeUrl}#reviews` },
+        { label: 'Contact', href: `${homeUrl}#contact` },
       ],
     },
   ],
 
-  social: [
-    { platform: 'Instagram', href: '#' },
-    { platform: 'Facebook', href: '#' },
-    { platform: 'Twitter', href: '#' },
-  ],
+  social: [],
 
   copyright: 'Your Company Name',
 }
