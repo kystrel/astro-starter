@@ -31,7 +31,7 @@ const {
     sizes="100vw"
     loading="eager"
     fetchpriority="high"
-    class="absolute inset-0 w-full h-full object-cover"
+    class="absolute inset-0 w-full h-full object-cover -scale-x-100"
   />
 
   <!-- Gradient overlay: dark on left where text sits, fades right -->
@@ -40,7 +40,7 @@ const {
   <div class="hero-content block relative z-10 w-full container mx-auto px-4 py-16">
     <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight">
       {headlinePrefix}<br />
-      <span class="underline decoration-primary decoration-4 underline-offset-8">{headlineAccent}</span>
+      <span class="text-primary">{headlineAccent}</span>
     </h1>
     <p class="text-lg mt-4 mb-8 max-w-lg">{description}</p>
     <div class="flex gap-4 flex-wrap">
