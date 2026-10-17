@@ -5,6 +5,8 @@
 
 Personal starter for future Astro projects
 
+[![Astro Starter demo with a snowy castle hero and two-color title](docs/assets/demo-screenshot.jpg)](https://kystrel.github.io/astro-starter/)
+
 ## Stack
 
 <table>
